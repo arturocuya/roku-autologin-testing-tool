@@ -1,0 +1,41 @@
+import "pkg:/source/lib/Promises.bs"
+
+sub init()
+    m.top.functionName = "main"
+end sub
+
+function execute() as dynamic
+    throw "Not implemented"
+end function
+
+function getPromise() as object
+    m.top.control = "RUN"
+    m.promise = promises.create()
+    return m.promise
+end function
+
+sub main()
+    result = execute()
+    promises.resolve(result, m.promise)
+end sub
+
+function getJwtPayload(jwt as string) as dynamic
+    ba = CreateObject("roByteArray")
+    ba.FromBase64String(base64UrlToBase64(jwt.Split(".")[1]))
+    return ba.toAsciiString()
+end function
+
+function base64UrlToBase64(base64Url as dynamic) as dynamic
+    ' Extracted from https://github.com/theREDspace/Roku-JWTLib/blob/master/jwtLib.brs#L195
+    base64 = base64Url.replace("-", "+").replace("_", "/")
+    length = base64.len() mod 4
+
+    ' Add required padding, optional in base64url
+    if (length < 3)
+        base64 = base64 + "=="
+    else if (length < 4)
+        base64 = base64 + "="
+    end if
+
+    return base64
+end function

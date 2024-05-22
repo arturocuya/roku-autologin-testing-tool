@@ -1,0 +1,6 @@
+<component name="PromiseTask" extends="Task">
+    <script type="text/brightscript" uri="_PromiseTask.bs" />
+    <interface>
+        <function name="getPromise" />
+    </interace>
+</component>
