@@ -1,6 +1,7 @@
 <component name="MainScene" extends="Scene">
     <script type="text/brightscript" uri="MainScene.bs" />
     <children>
-        <Label id="welcome" translation="[96, 54]" />
+        <ButtonGroup id="buttonGroup" translation="[96, 54]"/>
+        <Label id="resultLabel" translation="[700, 54]" width="1124" wrap="true" />
     </children>
 </component>

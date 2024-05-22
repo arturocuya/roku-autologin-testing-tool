@@ -1,0 +1,25 @@
+function execute() as string
+    registry = CreateObject("roRegistrySection", "HaystackKevinZ")
+    result = registry.Read("config")
+    
+    if (result = invalid or result = "")
+        return "Local token: none"
+    end if
+
+    parsedResult = ParseJson(result)
+    if (parsedResult = invalid)
+        return "Local token: none"
+    end if
+
+    token = parsedResult.hsToken
+    if (token = invalid or token = "")
+        return "Local token: none"
+    end if
+
+    return `Local Token: ${chr(10)}
+${token}
+
+Token payload:
+
+${getJwtPayload(token)}`
+end function

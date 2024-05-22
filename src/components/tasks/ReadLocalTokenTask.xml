@@ -1,0 +1,4 @@
+<component name="ReadLocalTokenTask" extends="PromiseTask">
+    <script type="text/brightscript" uri="ReadLocalTokenTask.bs" />
+    
+</component>

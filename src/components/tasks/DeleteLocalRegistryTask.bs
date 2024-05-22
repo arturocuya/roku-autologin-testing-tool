@@ -1,0 +1,5 @@
+function execute() as string
+    registry = CreateObject("roRegistrySection", "HaystackKevinZ")
+    success = registry.Delete("config")
+    return `Delete local registry success: ${success}`
+end function

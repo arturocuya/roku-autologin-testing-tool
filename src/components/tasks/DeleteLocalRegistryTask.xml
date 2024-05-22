@@ -1,0 +1,4 @@
+<component name="DeleteLocalRegistryTask" extends="PromiseTask">
+    <script type="text/brightscript" uri="DeleteLocalRegistryTask.bs" />
+    
+</component>

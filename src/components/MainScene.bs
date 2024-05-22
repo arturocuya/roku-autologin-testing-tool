@@ -1,9 +1,63 @@
-sub init()
-    label = m.top.findNode("welcome")
-    label.text = "Hello from create-roku-app"
+import "pkg:/source/lib/Promises.bs"
 
-    ' This is required to pass certification.
-    ' Specified in section 3.2 of the Roku Certification Criteria.
-    ' Reference: https://developer.roku.com/docs/developer-program/certification/certification.md#3-performance
+enum ActionButton
+    SimulateFreshInstall = "Simulate fresh install"
+    ReadLocalRegistry = "Read local token"
+    ReadCloudToken = "Read cloud token"
+    DeleteCloudToken = "Delete cloud token"
+    ReplaceCloudToken = "Replace cloud token"
+end enum
+
+sub init()
+    m.buttonGroup = m.top.findNode("buttonGroup")
+    m.resultLabel = m.top.findNode("resultLabel")
+
+    m.buttonGroup.buttons = [
+        ActionButton.SimulateFreshInstall,
+        ActionButton.ReadLocalRegistry,
+        ActionButton.ReadCloudToken,
+        ActionButton.DeleteCloudToken,
+        ActionButton.ReplaceCloudToken
+    ]
+
+    m.buttonGroup.setFocus(true)
+
+    m.buttonGroup.observeField("buttonSelected", "handleButtonSelected")
+
     m.top.signalBeacon("AppLaunchComplete")
+end sub
+
+sub handleButtonSelected(event as object)
+    if (m.lock <> invalid)
+        return
+    end if
+
+    m.resultLabel.text = "Loading..."
+
+    m.lock = true
+    buttonSelected = m.buttonGroup.buttons[event.GetData()]
+
+    task = invalid
+    if (buttonSelected = ActionButton.SimulateFreshInstall)
+        task = CreateObject("roSGNode", "DeleteLocalRegistryTask")
+
+    else if (buttonSelected = ActionButton.ReadLocalRegistry)
+        task = CreateObject("roSGNode", "ReadLocalTokenTask")
+    else if (buttonSelected = ActionButton.ReadCloudToken)
+    else if (buttonSelected = ActionButton.DeleteCloudToken)
+    else if (buttonSelected = ActionButton.ReplaceCloudToken)
+    end if
+
+    if (task = invalid)
+        m.lock = invalid
+        return
+    end if
+
+    promise = task.callFunc("getPromise")
+
+    promises.chain(promise).then(sub (result as dynamic)
+        m.resultLabel.text = result
+    end sub).finally(sub ()
+        m.lock = invalid
+    end sub)
 end sub
