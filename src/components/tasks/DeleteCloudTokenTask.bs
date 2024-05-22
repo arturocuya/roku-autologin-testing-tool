@@ -1,0 +1,7 @@
+function execute() as string
+    channelStore = CreateObject("roChannelStore")
+
+    result = channelStore.StoreChannelCredData("")
+
+    return `Success: ${result.status = 0}`
+end function

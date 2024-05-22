@@ -46,7 +46,11 @@ sub handleButtonSelected(event as object)
     else if (buttonSelected = ActionButton.ReadCloudToken)
         task = CreateObject("roSGNode", "ReadCloudTokenTask")
     else if (buttonSelected = ActionButton.DeleteCloudToken)
+        task = CreateObject("roSGNode", "DeleteCloudTokenTask")
     else if (buttonSelected = ActionButton.ReplaceCloudToken)
+        m.resultLabel.text = "Not implemented"
+        m.lock = invalid
+        return
     end if
 
     if (task = invalid)

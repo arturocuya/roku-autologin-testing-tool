@@ -15,6 +15,10 @@ function execute() as string
 
     token = parsedResult.channel_data
 
+    if (token = invalid or token = "")
+        return "Cloud Token: none"
+    end if
+
     return `Cloud Token:
     
 ${token}

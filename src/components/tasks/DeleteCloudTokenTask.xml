@@ -1,0 +1,4 @@
+<component name="DeleteCloudTokenTask" extends="PromiseTask">
+    <script type="text/brightscript" uri="DeleteCloudTokenTask.bs" />
+    
+</component>
