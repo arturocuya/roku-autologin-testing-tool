@@ -5,7 +5,6 @@ enum ActionButton
     ReadLocalRegistry = "Read local token"
     ReadCloudToken = "Read cloud token"
     DeleteCloudToken = "Delete cloud token"
-    ReplaceCloudToken = "Replace cloud token"
 end enum
 
 sub init()
@@ -16,8 +15,7 @@ sub init()
         ActionButton.SimulateFreshInstall,
         ActionButton.ReadLocalRegistry,
         ActionButton.ReadCloudToken,
-        ActionButton.DeleteCloudToken,
-        ActionButton.ReplaceCloudToken
+        ActionButton.DeleteCloudToken
     ]
 
     m.buttonGroup.setFocus(true)
@@ -47,10 +45,6 @@ sub handleButtonSelected(event as object)
         task = CreateObject("roSGNode", "ReadCloudTokenTask")
     else if (buttonSelected = ActionButton.DeleteCloudToken)
         task = CreateObject("roSGNode", "DeleteCloudTokenTask")
-    else if (buttonSelected = ActionButton.ReplaceCloudToken)
-        m.resultLabel.text = "Not implemented"
-        m.lock = invalid
-        return
     end if
 
     if (task = invalid)
