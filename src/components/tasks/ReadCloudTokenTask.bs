@@ -1,0 +1,25 @@
+function execute() as string
+    channelStore = CreateObject("roChannelStore")
+
+    result = channelStore.GetChannelCred()
+
+    if (result.status <> 0)
+        return "GetChannelCred failed: " + result.errorCode
+    end if
+
+    parsedResult = ParseJson(result.json)
+
+    if (parsedResult = invalid)
+        return "Failed to parse JSON result"
+    end if
+
+    token = parsedResult.channel_data
+
+    return `Cloud Token:
+    
+${token}
+
+Token payload:
+
+${getJwtPayload(token)}`
+end function

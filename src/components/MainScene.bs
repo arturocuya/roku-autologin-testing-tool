@@ -44,6 +44,7 @@ sub handleButtonSelected(event as object)
     else if (buttonSelected = ActionButton.ReadLocalRegistry)
         task = CreateObject("roSGNode", "ReadLocalTokenTask")
     else if (buttonSelected = ActionButton.ReadCloudToken)
+        task = CreateObject("roSGNode", "ReadCloudTokenTask")
     else if (buttonSelected = ActionButton.DeleteCloudToken)
     else if (buttonSelected = ActionButton.ReplaceCloudToken)
     end if

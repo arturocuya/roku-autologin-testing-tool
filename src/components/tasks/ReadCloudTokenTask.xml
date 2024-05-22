@@ -1,0 +1,4 @@
+<component name="ReadCloudTokenTask" extends="PromiseTask">
+    <script type="text/brightscript" uri="ReadCloudTokenTask.bs" />
+    
+</component>
