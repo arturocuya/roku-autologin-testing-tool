@@ -1,10 +1,10 @@
 title=Autologin Testing Tool
 ui_resolutions=fhd
-major_version=1
-minor_version=0
-build_version=0
+major_version=2
+minor_version=8
+build_version=7
 supports_input_launch=1
-mm_icon_focus_hd=# TODO: Add path to 290x218 image
-mm_icon_focus_sd=# TODO: Add path to 246x140 image
+mm_icon_focus_hd=pkg:/images/mm_icon_focus_hd.png
+mm_icon_focus_sd=pkg:/images/mm_icon_focus_sd.png
 splash_screen_hd=# TODO: Add path to 1280x720 image
 splash_screen_sd=# TODO: Add path to 720x480 image
